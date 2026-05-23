@@ -299,7 +299,6 @@ export default function ContentPage() {
       if (isDemo || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
         if (!cancelled) {
           const demoName = isDemo ? DEMO_DATA.profile.startupName : DEMO_STARTUP.name
-          setUserInitial(demoName.charAt(0))
           setProfile({ ...DEV_PROFILE, name: demoName, industry: isDemo ? DEMO_DATA.profile.industry : DEMO_STARTUP.industry })
           setProfileLoading(false)
         }
@@ -309,7 +308,6 @@ export default function ContentPage() {
         const supabase = createBrowserClient()
         const { data: { user } } = await supabase.auth.getUser()
         if (!user) { router.replace('/auth'); return }
-        if (!cancelled) setUserInitial(user.email?.[0]?.toUpperCase() ?? '?')
 
         const result = await supabase
           .from('profiles').select('*').eq('user_id', user.id).maybeSingle()
