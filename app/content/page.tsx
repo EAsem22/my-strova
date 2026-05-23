@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { AppSidebar, APP_NAV } from '@/components/ui/AppSidebar'
 import {
   TrendingUp, BarChart2,
-  Zap, MessageCircle, ArrowRight, TrendingDown, Minus,
+  Zap, MessageCircle, ArrowRight,
 } from 'lucide-react'
 
 import { createBrowserClient } from '@/lib/supabase'
@@ -117,10 +117,6 @@ const cardFadeUp: Variants = {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
-}
-
 function generateButtonLabel(triggerValue: string, generating: boolean) {
   if (generating) return null
   switch (triggerValue) {
@@ -155,21 +151,6 @@ function IdeasSkeleton() {
         <Skeleton key={i} variant="card" height={300} />
       ))}
     </div>
-  )
-}
-
-// ─── Demo Badge ───────────────────────────────────────────────────────────────
-
-function DemoBadge() {
-  const [isDemo, setIsDemo] = useState(false)
-  useEffect(() => {
-    setIsDemo(typeof window !== 'undefined' && localStorage.getItem('strova-demo') === 'true')
-  }, [])
-  if (!isDemo) return null
-  return (
-    <span className="rounded-full bg-emerald px-3 py-1 text-[10px] font-bold text-white uppercase tracking-wider">
-      Demo Mode
-    </span>
   )
 }
 
@@ -297,8 +278,6 @@ export default function ContentPage() {
 
   const [profile,        setProfile]        = useState<StartupProfile | null>(null)
   const [profileLoading, setProfileLoading] = useState(true)
-  const [userInitial,    setUserInitial]    = useState('?')
-
   const [ideas,         setIdeas]         = useState<RichContentIdea[]>([])
   const [generating,    setGenerating]    = useState(false)
   const [generateError, setGenerateError] = useState('')

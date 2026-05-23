@@ -1,6 +1,5 @@
 ﻿'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Star, Download, Eye } from 'lucide-react'
 import type { Template } from '@/lib/types'

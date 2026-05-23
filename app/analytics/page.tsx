@@ -1,10 +1,9 @@
 ﻿'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useState, useEffect, useRef } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
-  Home, TrendingUp, Lightbulb, LayoutTemplate, BarChart3,
   MessageCircle,
   ChevronRight, Info, X, Check, ArrowUpRight, Zap,
   BarChart2, ChevronDown,
@@ -58,28 +57,6 @@ function Sparkline({ data, w = 80, h = 28, color = '#10b981' }: { data: number[]
   )
 }
 
-// ─── Gate toast ───────────────────────────────────────────────────────────────
-
-interface GateToastMsg { id: number; platform: string }
-
-function GateToast({ msg, onDismiss }: { msg: GateToastMsg; onDismiss: () => void }) {
-  useEffect(() => { const t = setTimeout(onDismiss, 4000); return () => clearTimeout(t) }, [onDismiss])
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 80 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 80 }}
-      className="fixed top-6 right-6 z-50 bg-white border border-border rounded-xl px-4 py-3.5 shadow-md max-w-xs border-l-4"
-      style={{ borderLeftColor: '#10b981' }}
-    >
-      <div className="flex items-start gap-3">
-        <Info size={15} className="text-emerald shrink-0 mt-0.5" />
-        <p className="text-sm text-ink-soft leading-snug">Coming soon — <strong className="text-ink">{msg.platform}</strong> integration launching in Phase 2</p>
-        <button onClick={onDismiss} className="text-muted hover:text-ink shrink-0"><X size={13} /></button>
-      </div>
-    </motion.div>
-  )
-}
 
 // ─── Platform channel icons ───────────────────────────────────────────────────
 
@@ -622,7 +599,6 @@ function DemoContent({ demo, blurred }: DemoContentProps) {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function AnalyticsPage() {
-  const router = useRouter()
   const path = usePathname()
   const searchParams = useSearchParams()
   const isDemo = searchParams.get('demo') === 'true'

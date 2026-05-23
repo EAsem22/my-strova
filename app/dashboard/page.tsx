@@ -30,7 +30,6 @@ import {
   DEMO_DATA,
   type DemoChannel,
   type DemoTopic,
-  type DemoOpportunity,
   type DemoNews,
 } from '@/lib/demo-data'
 

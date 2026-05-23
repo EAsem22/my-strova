@@ -6,9 +6,8 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import Link from 'next/link'
 import { AppSidebar, APP_NAV } from '@/components/ui/AppSidebar'
 import {
-  LayoutDashboard, TrendingUp, FileText, LayoutGrid, BarChart2,
   CheckCircle2, X, Bookmark, BookmarkCheck, Star, Download,
-  ChevronDown, SlidersHorizontal,
+  SlidersHorizontal,
 } from 'lucide-react'
 
 import { createBrowserClient } from '@/lib/supabase'
@@ -357,7 +356,7 @@ export default function TemplatesPage() {
   function toggleSave(id: string) {
     setSavedIds((prev) => {
       const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
+      if (next.has(id)) { next.delete(id) } else { next.add(id) }
       return next
     })
   }

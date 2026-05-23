@@ -3,11 +3,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
-  Home,
-  TrendingUp,
-  Lightbulb,
-  LayoutTemplate,
-  BarChart3,
   Bookmark,
   Zap,
   AlertTriangle,
@@ -476,9 +471,6 @@ export default function TrendsPage() {
     if (trendDir === 'Declining' && t.trend !== 'Declining') return false
     return true
   })
-
-  // Top rising topic for prompt bar CTA
-  const topRising = DEMO_TOPICS.find((t) => t.trend === 'Rising') ?? DEMO_TOPICS[0]
 
   const startup = isDemo
     ? { name: DEMO_DATA.profile.startupName, industry: DEMO_DATA.profile.industry, city: DEMO_DATA.profile.city }
