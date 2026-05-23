@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
   MessageCircle,
